@@ -6,18 +6,18 @@ import 'base_model.dart';
 class LoginViewModel extends BaseModel {
   final NavigationService _navigationService = locator<NavigationService>();
 
-  Future<bool> login({bool success = true}) async {
+  Future login({bool success = true}) async {
     setBusy(true);
     await Future.delayed(Duration(seconds: 1));
 
     if (!success) {
-      setErrorMessage('Error has occured with the login');
+      setErrorMessage('Error has occurred with the login');
     } else {
       setErrorMessage(null);
-      _navigationService.navigateTo(routes.HomeRoute);
+      _navigationService.navigateTo(routes.HomeRoute,
+          arguments: 'FilledStacks');
     }
 
     setBusy(false);
-    return success;
   }
 }

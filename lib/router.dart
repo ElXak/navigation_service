@@ -10,7 +10,9 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case routes.LoginRoute:
       return MaterialPageRoute(builder: (context) => LoginView());
     case routes.HomeRoute:
-      return MaterialPageRoute(builder: (context) => HomeView());
+      String userName = settings.arguments as String;
+      return MaterialPageRoute(
+          builder: (context) => HomeView(userName: userName));
     default:
       return MaterialPageRoute(
         builder: (context) => Scaffold(

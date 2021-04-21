@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import '../view_models/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key key}) : super(key: key);
+  final String userName;
+  const HomeView({Key key, this.userName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +18,8 @@ class HomeView extends StatelessWidget {
             child: Align(
               alignment: Alignment.bottomCenter,
               child: GestureDetector(
-                onTap: () async {
-                  var success = await model.logout();
-                  if (success) {
-                    Navigator.of(context).pop();
-                  }
+                onTap: () {
+                  model.logout();
                 },
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -41,7 +39,7 @@ class HomeView extends StatelessWidget {
                       height: 80,
                       alignment: Alignment.center,
                       child: !model.busy
-                          ? Text('Logout',
+                          ? Text('Logout \n$userName',
                               style: TextStyle(
                                   fontWeight: FontWeight.w800,
                                   color: Colors.white,

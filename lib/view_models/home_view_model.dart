@@ -1,17 +1,18 @@
+import '../locator.dart';
+import '../services/navigation_service.dart';
 import 'base_model.dart';
 
 class HomeViewModel extends BaseModel {
-  Future<bool> logout({bool success = true}) async {
+  final NavigationService _navigationService = locator<NavigationService>();
+
+  Future logout({bool success = true}) async {
     setBusy(true);
     await Future.delayed(Duration(seconds: 1));
 
     if (!success) {
-      setErrorMessage('Error has occured during sign out');
+      setErrorMessage('Error has occurred during sign out');
     } else {
-      setErrorMessage(null);
+      _navigationService.goBack();
     }
-
-    setBusy(false);
-    return success;
   }
 }
